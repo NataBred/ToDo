@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_all_tasks"
+        android:icon="@drawable/ic_all_tasks"
+        android:title="@string/activity_main_bottom_tab_all_tasks"
+        />
+    <item
+        android:id="@+id/item_done_tasks"
+        android:icon="@drawable/ic_done_task"
+        android:title="@string/activity_main_bottom_tab_done_tasks"
+        />
+    <item
+        android:id="@+id/item_not_done_tasks"
+        android:icon="@drawable/ic_not_done_task"
+        android:title="@string/activity_main_bottom_tab_not_done_tasks"
+        />
+</menu>

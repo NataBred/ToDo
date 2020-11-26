@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Задачи</string>
+    <string name="activity_main_bottom_tab_all_tasks">Все</string>
+    <string name="activity_main_bottom_tab_done_tasks">Сделанные</string>
+    <string name="activity_main_bottom_tab_not_done_tasks">Несделанные</string>
+    <string name="activity_main_menu_item_title">Удалить все</string>
+    <string name="fragment_task_menu_item_title">Сохранить</string>
+    <string name="fragment_create_task_toolbar">Создать задачу</string>
+    <string name="fragment_done_tasks_toolbar">Сделано</string>
+    <string name="fragment_not_done_tasks_toolbar">Надо сделать</string>
+    <string name="fragment_tasks_create_button">Создать</string>
+</resources>

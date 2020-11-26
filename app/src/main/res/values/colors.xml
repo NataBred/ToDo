@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5FD5F1</color>
+    <color name="colorPrimaryDark">#00CFFF</color>
+    <color name="colorAccent">#56DFFF</color>
+    <color name="soft_peach">#F0F0F0</color>
+    <color name="soft_peacаha">#FAFAFA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="almond">#FF5039</color>
+    <color name="chatelle">#AF3626</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>

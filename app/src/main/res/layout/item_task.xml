@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zerobranch.layout.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/item_task_min_layout_height"
+    android:layout_marginTop="@dimen/default_margin_medium"
+    app:draggedItem="@id/layout_main_content"
+    app:rightItem="@id/layout_delete_task"
+    app:swipeDirection="left"
+    >
+
+    <FrameLayout
+        android:id="@+id/layout_delete_task"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center"
+        >
+
+        <View
+            android:layout_width="@dimen/item_task_delete_button_size"
+            android:layout_height="@dimen/item_task_delete_button_size"
+            android:layout_gravity="center"
+            android:background="@drawable/background_blue_circle_button"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/item_task_delete_icon_size"
+            android:layout_height="@dimen/item_task_delete_icon_size"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_delete"
+            tools:ignore="VectorDrawableCompat"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_ellipse"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:padding="@dimen/default_margin_medium"
+        android:layout_gravity="center"
+        >
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkbox_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="jjjfffffffffffffffffffffjjjffffffffffffffffffddfffffffffffffffffffffffffff"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_task_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ffffffffffffffffffffffffffff"
+            android:gravity="end"
+            />
+    </LinearLayout>
+</com.zerobranch.layout.SwipeLayout>
