@@ -5,6 +5,7 @@ import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
 import com.example.todo.data.Task
 import com.example.todo.data.TaskDao
+import com.example.todo.data.TaskType
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
@@ -12,25 +13,25 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 
-class TasksViewModel(private val taskDao: TaskDao) : ViewModel() {
+class TasksViewModel(
+  private val taskDao: TaskDao,
+  private val taskType: TaskType
+) : ViewModel() {
 
   private val disposeBag = CompositeDisposable()
 
   val tasks = BehaviorSubject.create<PagedList<Task>>()
-  val tasksDone = BehaviorSubject.create<PagedList<Task>>()
-  val tasksNotDone = BehaviorSubject.create<PagedList<Task>>()
 
   private val pagedListConfig = PagedList.Config.Builder()
     .setPageSize(20)
     .setEnablePlaceholders(false)
     .build()
 
-  private val pagedList =
-    RxPagedListBuilder(taskDao.getTasks(), pagedListConfig).buildObservable()
-  private val pagedListDone =
-    RxPagedListBuilder(taskDao.getTasks(true), pagedListConfig).buildObservable()
-  private val pagedListNotDone =
-    RxPagedListBuilder(taskDao.getTasks(false), pagedListConfig).buildObservable()
+  private val pagedList = when(taskType) {
+    TaskType.ALL -> RxPagedListBuilder(taskDao.getTasks(), pagedListConfig).buildObservable()
+    TaskType.DONE -> RxPagedListBuilder(taskDao.getTasks(true), pagedListConfig).buildObservable()
+    TaskType.NOT_DONE -> RxPagedListBuilder(taskDao.getTasks(false), pagedListConfig).buildObservable()
+  }
 
   val navigateToCreateTaskScreen = PublishSubject.create<Unit>()
 
@@ -41,14 +42,6 @@ class TasksViewModel(private val taskDao: TaskDao) : ViewModel() {
   private fun handleTasksLoaded() {
     pagedList.subscribe { list ->
       tasks.onNext(list)
-    }.addTo(disposeBag)
-
-    pagedListDone.subscribe { list ->
-      tasksDone.onNext(list)
-    }.addTo(disposeBag)
-
-    pagedListNotDone.subscribe { list ->
-      tasksNotDone.onNext(list)
     }.addTo(disposeBag)
   }
 

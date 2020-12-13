@@ -11,3 +11,7 @@ data class Task(
   val date: String? = null,
   val isDone: Boolean = false
 )
+
+enum class TaskType {
+  ALL, DONE, NOT_DONE
+}

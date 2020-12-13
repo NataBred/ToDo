@@ -4,7 +4,6 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedList
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ import kotlinx.android.synthetic.main.item_task.view.checkbox_task
 import kotlinx.android.synthetic.main.item_task.view.layout_delete_task
 import kotlinx.android.synthetic.main.item_task.view.text_view_task_date
 
-class AllTasksAdapter : PagedListAdapter<Task, AllTasksAdapter.ViewHolder>(DiffUtilCallback()) {
+class TasksAdapter : PagedListAdapter<Task, TasksAdapter.ViewHolder>(DiffUtilCallback()) {
   val deleteTaskClicked = PublishSubject.create<Task>()
   val taskIsDoneClicked = PublishSubject.create<Task>()
 

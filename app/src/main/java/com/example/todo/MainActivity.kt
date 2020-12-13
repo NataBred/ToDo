@@ -5,9 +5,8 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.example.todo.task.show.all.AllTasksFragment
-import com.example.todo.task.show.done.DoneTasksFragment
-import com.example.todo.task.show.notdone.NotDoneTasksFragment
+import com.example.todo.data.TaskType
+import com.example.todo.task.show.TasksFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.bottom_navigation_view
 
@@ -15,12 +14,12 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
-    showCreateNoteFragment()
+    showTasksFragment()
     setBottomNavigationListener()
   }
 
-  private fun showCreateNoteFragment() {
-    replaceFragment(AllTasksFragment())
+  private fun showTasksFragment() {
+    replaceFragment(TasksFragment.newInstance(TaskType.ALL))
   }
 
   override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -28,10 +27,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
       return false
     }
     val fragment = when (item.itemId) {
-      R.id.item_all_tasks -> AllTasksFragment()
-      R.id.item_done_tasks -> DoneTasksFragment()
-      R.id.item_not_done_tasks -> NotDoneTasksFragment()
-      else -> AllTasksFragment()
+      R.id.item_all_tasks -> TasksFragment.newInstance(TaskType.ALL)
+      R.id.item_done_tasks -> TasksFragment.newInstance(TaskType.DONE)
+      R.id.item_not_done_tasks ->  TasksFragment.newInstance(TaskType.NOT_DONE)
+      else ->  TasksFragment.newInstance(TaskType.ALL)
     }
     replaceFragment(fragment)
     return true

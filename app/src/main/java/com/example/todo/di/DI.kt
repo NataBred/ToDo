@@ -2,6 +2,7 @@ package com.example.todo.di
 
 import androidx.room.Room
 import com.example.todo.data.DataBase
+import com.example.todo.data.TaskType
 import com.example.todo.task.create.CreateTaskViewModel
 import com.example.todo.task.show.TasksViewModel
 import org.koin.android.ext.koin.androidContext
@@ -20,8 +21,8 @@ private val gatewaysModule = module {
 }
 
 private val viewModelModule = module {
-  viewModel {
-    TasksViewModel(get())
+  viewModel {( taskType: TaskType) ->
+    TasksViewModel(get(), taskType)
   }
 
   viewModel {
