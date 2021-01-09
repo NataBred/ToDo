@@ -9,14 +9,11 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-private val gatewaysModule = module {
+private val daoModule = module {
   single {
-    Room.databaseBuilder(androidContext(), DataBase::class.java, "task_database").build()
-  }
-
-  single {
-    val dataBase: DataBase = get()
-    dataBase.taskDao()
+    Room.databaseBuilder(androidContext(), DataBase::class.java, "task_database")
+      .build()
+      .taskDao()
   }
 }
 
@@ -31,6 +28,6 @@ private val viewModelModule = module {
 }
 
 val modules = listOf(
-  gatewaysModule,
+  daoModule,
   viewModelModule
 )

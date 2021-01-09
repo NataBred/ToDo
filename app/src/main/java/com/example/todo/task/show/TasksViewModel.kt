@@ -21,6 +21,9 @@ class TasksViewModel(
   private val disposeBag = CompositeDisposable()
 
   val tasks = BehaviorSubject.create<PagedList<Task>>()
+  val showDeleteAllDialog = PublishSubject.create<Unit>()
+  val showDeleteTaskDialog = PublishSubject.create<Task>()
+  val showError = PublishSubject.create<String>()
 
   private val pagedListConfig = PagedList.Config.Builder()
     .setPageSize(20)
@@ -46,10 +49,18 @@ class TasksViewModel(
   }
 
   fun onDeleteTaskClicked(task: Task) {
+    showDeleteTaskDialog.onNext(task)
+  }
+
+  fun onDeleteTaskConfirmClicked(task:Task) {
     deleteTask(task)
   }
 
   fun onDeleteAllClicked() {
+    showDeleteAllDialog.onNext(Unit)
+  }
+
+  fun onDeleteAllConfirmClicked() {
     deleteAllTask()
   }
 
@@ -64,6 +75,9 @@ class TasksViewModel(
   private fun updateTask(task: Task) {
     taskDao.update(task)
       .subscribeOn(Schedulers.io())
+      .doOnError { error ->
+        showError.onNext(error.message ?: "")
+      }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe({}, {})
       .addTo(disposeBag)
@@ -72,6 +86,9 @@ class TasksViewModel(
   private fun deleteTask(task: Task) {
     taskDao.delete(task)
       .subscribeOn(Schedulers.io())
+      .doOnError { error ->
+        showError.onNext(error.message ?: "")
+      }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe({}, {})
       .addTo(disposeBag)
@@ -80,6 +97,9 @@ class TasksViewModel(
   private fun deleteAllTask() {
     taskDao.deleteAll()
       .subscribeOn(Schedulers.io())
+      .doOnError { error ->
+        showError.onNext(error.message ?: "")
+      }
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe({}, {})
       .addTo(disposeBag)

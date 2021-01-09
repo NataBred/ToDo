@@ -9,4 +9,9 @@
     <string name="fragment_done_tasks_toolbar">Сделано</string>
     <string name="fragment_not_done_tasks_toolbar">Надо сделать</string>
     <string name="fragment_tasks_create_button">Создать</string>
+    <string name="fragment_delete_all_dialog">Удалить все задачи?</string>
+    <string name="fragment_delete_task_dialog">Удалить задачу?</string>
+    <string name="fragment_dialog_negative_button">Нет</string>
+    <string name="fragment_dialog_positive_button">Да</string>
+    <string name="error">Ошибка</string>
 </resources>
